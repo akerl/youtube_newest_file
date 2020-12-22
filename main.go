@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/akerl/slack_newest_file/cmd"
+	"github.com/akerl/youtube_newest_file/cmd"
 )
 
 func main() {

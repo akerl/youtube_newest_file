@@ -5,8 +5,8 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:           "slack_newest_file",
-	Short:         "Tool to upload the newest file to Slack",
+	Use:           "youtube_newest_file",
+	Short:         "Tool to upload the newest file to youtube",
 	SilenceUsage:  true,
 	SilenceErrors: true,
 }

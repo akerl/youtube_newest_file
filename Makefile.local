@@ -1,4 +1,4 @@
-PACKAGE = slack_newest_file
+PACKAGE = youtube_newest_file
 NAMESPACE = github.com/akerl
 VERSION_VAR_PATH = version.Version
 OSLIST = linux darwin windows

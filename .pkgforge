@@ -1,4 +1,4 @@
-name 'slack_newest_file'
+name 'youtube_newest_file'
 org 'akerl'
 
 source(
@@ -15,16 +15,16 @@ package(
   type: 'file',
   artifacts: [
     {
-      source: 'bin/speculate_darwin',
-      name: 'speculate_darwin'
+      source: 'bin/youtube_newest_file_darwin',
+      name: 'youtube_newest_file_darwin'
     },
     {
-      source: 'bin/speculate_linux',
-      name: 'speculate_linux'
+      source: 'bin/youtube_newest_file_linux',
+      name: 'youtube_newest_file_linux'
     },
     {
-      source: 'bin/speculate_windows',
-      name: 'speculate_windows'
+      source: 'bin/youtube_newest_file_windows',
+      name: 'youtube_newest_file_windows'
     }
   ]
 )
