@@ -48,29 +48,36 @@ func uploadFile(file string) error {
 
 	upload := &youtube.Video{
 		Snippet: &youtube.VideoSnippet{
-			Title:       getTitle(),
-			Description: *description,
-			CategoryId:  *category,
+			Title:      getTitle(),
+			CategoryId: getCategory(),
 		},
-		Status: &youtube.VideoStatus{PrivacyStatus: *privacy},
+		Status: &youtube.VideoStatus{PrivacyStatus: getPrivacy()},
 	}
-
-	// The API returns a 400 Bad Request response if tags is an empty string.
-	if strings.Trim(*keywords, "") != "" {
-		upload.Snippet.Tags = strings.Split(*keywords, ",")
-	}
-
 	call := service.Videos.Insert("snippet,status", upload)
 
-	file, err := os.Open(*filename)
+	file, err := os.Open(file)
 	defer file.Close()
 	if err != nil {
-		log.Fatalf("Error opening %v: %v", *filename, err)
+		return err
 	}
 
-	response, err := call.Media(file).Do()
-	handleError(err, "")
-	fmt.Printf("Upload successful! Video ID: %v\n", response.Id)
+	_, err := call.Media(file).Do()
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func getTitle() string {
+	return time.Now().Format("2006/01/02 15:04 Recording")
+}
+
+func getCategory() string {
+	return "20"
+}
+
+func getPrivacy() string {
+	return "unlisted"
 }
 
 var uploadCmd = &cobra.Command{
@@ -81,5 +88,4 @@ var uploadCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(uploadCmd)
-	uploadCmd.Flags().StringP("title", "t", "", "Set a IAM policy ")
 }
